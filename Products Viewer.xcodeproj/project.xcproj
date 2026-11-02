@@ -23,6 +23,12 @@
       "version": {
         "up-to-next-major-version": "1.31.0",
       },
+    }, {
+      "kind": "remote",
+      "repository": "https://github.com/Alamofire/AlamofireImage",
+      "version": {
+        "up-to-next-major-version": "4.4.0",
+      },
     },
   ],
   "files": [
@@ -61,6 +67,10 @@
       ],
       "package-product-members": [
         {
+          "package": "AlamofireImage",
+          "product-name": "AlamofireImage",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
           "package": "NVActivityIndicatorView",
           "product-name": "NVActivityIndicatorView",
           "build-phase": { "build-phase": "frameworks" },

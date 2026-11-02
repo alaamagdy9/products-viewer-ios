@@ -9,6 +9,8 @@
 
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class ProductDetailViewController: UIViewController {
 
@@ -36,6 +38,7 @@ class ProductDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setUpViews()
+        loadImage()
         setUpConstraints()
     }
 
@@ -85,6 +88,12 @@ class ProductDetailViewController: UIViewController {
             titleLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
         ]
     }
+    private func loadImage() {
+            // The URL comes from the server, so it might not be valid.
+            guard let url = URL(string: product.imageUrl) else { return }
+            // AlamofireImage downloads the image and caches it for next time.
+            imageView.af.setImage(withURL: url)
+        }
 
     private func updateLayout() {
         let isLandscape = view.bounds.width > view.bounds.height
