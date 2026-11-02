@@ -10,6 +10,15 @@
       "Base",
     ],
   },
+  "packages": [
+    {
+      "kind": "remote",
+      "repository": "https://github.com/ninjaprox/NVActivityIndicatorView",
+      "version": {
+        "up-to-next-major-version": "5.2.0",
+      },
+    },
+  ],
   "files": [
     {
       "kind": "folder",
@@ -43,6 +52,13 @@
         "compile-sources",
         "frameworks",
         "resources",
+      ],
+      "package-product-members": [
+        {
+          "package": "NVActivityIndicatorView",
+          "product-name": "NVActivityIndicatorView",
+          "build-phase": { "build-phase": "frameworks" },
+        },
       ],
       "build-settings": {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
