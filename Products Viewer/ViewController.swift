@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         title = "Products"
         tableView.dataSource = self
+        tableView.delegate = self
         // SkeletonView divides the table height by this to count its rows,
         // so it needs a fixed height and not the automatic one.
         tableView.rowHeight = 60
@@ -87,5 +88,15 @@ extension ViewController: SkeletonTableViewDataSource {
         cell.configure(with: products[indexPath.row])
 
         return cell
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let detailViewController = ProductDetailViewController(product: products[indexPath.row])
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
