@@ -11,7 +11,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView! //Connects the table view from the storyboard to the Swift code.
 
     // The frame needs a real size because the library reads it on start.
     private let activityIndicator = NVActivityIndicatorView(
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         loadProducts()
     }
 
-    private func setUpActivityIndicator() {
+    private func setUpActivityIndicator() {  //adds the spinner to the screen and positions it
         view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
             // Runs on success and on failure, so nothing stays on screen.
             // hideSkeleton also reloads the table with the real products.
             defer {
-                activityIndicator.stopAnimating()
+                activityIndicator.stopAnimating() //execute this code when the current scope is about to exit.
                 tableView.hideSkeleton()
             }
 
@@ -78,7 +78,7 @@ extension ViewController: SkeletonTableViewDataSource {
         return "ProductCell"
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { //this method runs when the user taps a product.
         return products.count
     }
 

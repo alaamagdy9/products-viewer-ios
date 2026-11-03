@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// class responsible for managing the app's scene lifecycle.
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?

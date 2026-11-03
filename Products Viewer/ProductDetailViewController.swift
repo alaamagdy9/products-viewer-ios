@@ -21,7 +21,7 @@ class ProductDetailViewController: UIViewController {
 
     private var portraitConstraints: [NSLayoutConstraint] = []
     private var landscapeConstraints: [NSLayoutConstraint] = []
-    // nil until the first layout, so the first check always applies a layout.
+   // meaning the app hasn't applied an orientation layout yet. This ensures the first layout is applied.
     private var isShowingLandscape: Bool?
 
     init(product: Product) {
@@ -34,7 +34,7 @@ class ProductDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    override func viewDidLoad() {  //runs when the screen's view has loaded for the first time.
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setUpViews()
@@ -45,7 +45,7 @@ class ProductDetailViewController: UIViewController {
     // UIKit calls this before laying out the screen, including after a rotation.
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        updateLayout()
+        updateLayout()  //this also allows the layout to change after the device rotates.
     }
 
     private func setUpViews() {
@@ -54,7 +54,7 @@ class ProductDetailViewController: UIViewController {
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
 
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFit //displays the entire image without stretching it.
         imageView.backgroundColor = .secondarySystemBackground
 
         view.addSubview(titleLabel)

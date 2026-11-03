@@ -3,16 +3,20 @@
 //  Products Viewer
 //
 //  Created by Alaa Magdy on 02/11/2026.
-//
+
+
+
+
+//displaying a product's name inside a table view.
 
 import SkeletonView
 import UIKit
 
 class ProductCell: UITableViewCell {
 
-    private let nameLabel = UILabel()
+    private let nameLabel = UILabel() //Creates a text label.
 
-    // Runs once when a cell is created from the storyboard prototype.
+    //runs when the cell is created from a Storyboard or XIB.
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -23,7 +27,7 @@ class ProductCell: UITableViewCell {
         nameLabel.text = " "
 
         contentView.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false//to define our own constrains
 
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),

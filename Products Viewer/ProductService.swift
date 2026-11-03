@@ -12,13 +12,14 @@ struct ProductService {
     
     func fetchProducts() async throws -> [Product] { //can throw errors and return list of product objects
                                                 //async so the app does not freeze
-            let (data, response) = try await URLSession.shared.data(from: feedURL)
+            let (data, response) = try await URLSession.shared.data(from: feedURL)    //get request  to the server and wait for the response
+        //and await for the asynchronus work
         
         guard let httpResponse = response as? HTTPURLResponse else {
-                    throw URLError(.badServerResponse)        //Only an HTTP response has a status code.
+                    throw URLError(.badServerResponse)        // check Only an HTTP response has a status code.
                 }
 
-        // A server error is not thrown by URLSession, so we check it ourselves.
+        // did it return 200
         guard httpResponse.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
