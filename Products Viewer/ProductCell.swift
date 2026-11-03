@@ -11,6 +11,8 @@
 
 import SkeletonView
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class ProductCell: UITableViewCell {
     
@@ -85,12 +87,22 @@ class ProductCell: UITableViewCell {
         ])
     }
     
+    override func prepareForReuse() { //It prevents an old product's image from appearing in a cell displaying a different product.
+            super.prepareForReuse()
+        productImageView.af.cancelImageRequest()
+               productImageView.image = nil
+           }
+        
+    
     func configure(with product: Product) {
         nameLabel.text = product.name
         descriptionLabel.text = cleanedDescription(product.description)
         // The feed sends the price without a currency sign.
         priceLabel.text = "$" + product.price
-    }
+        guard let url = URL(string: product.imageUrl) else { return }
+
+            productImageView.af.setImage(withURL: url) //uses AlamofireImage to download and display the image. It also supports image caching.
+        }
     
     // Some descriptions start with spaces and contain the HTML line break <br />.
     private func cleanedDescription(_ description: String) -> String {
