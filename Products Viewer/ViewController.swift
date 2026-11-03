@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         // SkeletonView divides the table height by this to count its rows,
         // so it needs a fixed height and not the automatic one.
-        tableView.rowHeight = 60
+        tableView.rowHeight = 100
         tableView.isSkeletonable = true
         setUpActivityIndicator()
         loadProducts()

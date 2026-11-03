@@ -14,25 +14,74 @@ import UIKit
 
 class ProductCell: UITableViewCell {
 
-    private let nameLabel = UILabel() //Creates a text label.
+    private let productImageView = UIImageView()
+    private let nameLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private let priceLabel = UILabel()
 
-    //runs when the cell is created from a Storyboard or XIB.
+    // Runs when the cell is created from the storyboard prototype.
     override func awakeFromNib() {
         super.awakeFromNib()
-
         // SkeletonView only covers views marked as skeletonable.
         isSkeletonable = true
-        nameLabel.isSkeletonable = true
+        setUpViews()
+        setUpConstraints()
+    }
+
+    private func setUpViews() {
+        productImageView.contentMode = .scaleAspectFit
+        // Gray box until the image loads.
+        productImageView.backgroundColor = .secondarySystemBackground
+
+        nameLabel.font = .preferredFont(forTextStyle: .headline)
+
+        descriptionLabel.font = .preferredFont(forTextStyle: .subheadline)
+        descriptionLabel.textColor = .secondaryLabel
+        // The task allows at most 2 lines of description.
+        descriptionLabel.numberOfLines = 2
+
+        priceLabel.font = .preferredFont(forTextStyle: .body)
+        // The price always shows fully,controls how much a view resists becoming larger than its content requires.
+        priceLabel.setContentHuggingPriority(.required, for: .horizontal)
+        priceLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+
+        let subviews: [UIView] = [productImageView, nameLabel, descriptionLabel, priceLabel] //instead of adding each view separately,put them into an array and uses a for loop.
+        for subview in subviews {
+            subview.isSkeletonable = true
+            subview.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(subview)
+        }
+
         // An empty label has no height, so it would show no placeholder.
         nameLabel.text = " "
+        descriptionLabel.text = " "
+        priceLabel.text = " "
+    }
 
-        contentView.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false//to define our own constrains
+    private func setUpConstraints() {
+        let margins = contentView.layoutMarginsGuide
 
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            // Image: on the left, square, centered vertically.
+            productImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            productImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            productImageView.widthAnchor.constraint(equalToConstant: 50),
+            productImageView.heightAnchor.constraint(equalTo: productImageView.widthAnchor),
+
+            // Price: on the right, centered vertically.
+            priceLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+
+            // Title: between the image and the price, at the top.
+            nameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 12),
+            nameLabel.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -8),
+            nameLabel.topAnchor.constraint(equalTo: margins.topAnchor),
+
+            // Description: under the title, with the same left and right edges.
+            descriptionLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
+            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor)
         ])
     }
 
