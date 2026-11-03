@@ -52,7 +52,7 @@
         <!--Navigation Controller-->
         <scene sceneID="INp-Wt-mIz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xEy-Fk-76o" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xEy-Fk-76o" customClass="SideMenuNavigationController" customModule="Products_Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="w52-a9-a2L">
                         <rect key="frame" x="0.0" y="59" width="393" height="54"/>
