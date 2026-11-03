@@ -4,7 +4,7 @@
 //
 //  Created by Alaa Magdy on 02/11/2026.
 //
-
+import ENSwiftSideMenu
 import NVActivityIndicatorView
 import SkeletonView
 import UIKit
@@ -27,6 +27,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Products"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+                    image: UIImage(systemName: "line.3.horizontal"),
+                    style: .plain,
+                    target: self,
+                    action: #selector(menuButtonTapped) //it tells iOS which method to call when the button is pressed.
+                )
         tableView.dataSource = self
         tableView.delegate = self
         // SkeletonView divides the table height by this to count its rows,
@@ -36,6 +42,10 @@ class ViewController: UIViewController {
         setUpActivityIndicator()
         loadProducts()
     }
+    @objc private func menuButtonTapped() {
+            // From ENSwiftSideMenu: opens the menu if it's closed, closes it if it's open.
+            toggleSideMenuView()
+        }
 
     private func setUpActivityIndicator() {  //adds the spinner to the screen and positions it
         view.addSubview(activityIndicator)
