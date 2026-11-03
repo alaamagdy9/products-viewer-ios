@@ -29,6 +29,12 @@
       "version": {
         "up-to-next-major-version": "4.4.0",
       },
+    }, {
+      "kind": "remote",
+      "repository": "https://github.com/evnaz/ENSwiftSideMenu",
+      "version": {
+        "up-to-next-major-version": "0.1.5",
+      },
     },
   ],
   "files": [
@@ -69,6 +75,10 @@
         {
           "package": "AlamofireImage",
           "product-name": "AlamofireImage",
+          "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "ENSwiftSideMenu",
+          "product-name": "ENSwiftSideMenu",
           "build-phase": { "build-phase": "frameworks" },
         }, {
           "package": "NVActivityIndicatorView",

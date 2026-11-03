@@ -1,5 +1,5 @@
 {
-  "originHash" : "770ee088c89dfbc3bed3cedaf57139654529a30447182256db2930a0f638c048",
+  "originHash" : "7fac26031fb6a82f310f4e63469cbd2c9147340c7ac38ea442757843e9835c63",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "4cf73d601c482b7d77bae47de3ef1b8bcf328ec1",
         "version" : "4.4.0"
+      }
+    },
+    {
+      "identity" : "enswiftsidemenu",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evnaz/ENSwiftSideMenu",
+      "state" : {
+        "revision" : "4a585ea393e4a7254507b4b196f5a7e6784ff6de",
+        "version" : "0.1.5"
       }
     },
     {
